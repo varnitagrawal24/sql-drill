@@ -1,0 +1,4 @@
+select * from posts 
+where extract(year from creationdate)=2015
+order by score desc
+limit 10

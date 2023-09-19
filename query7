@@ -1,0 +1,8 @@
+select posts.* from posts
+join tags on posts.tags like concat('%',tags.tagname,'%')
+where posttypeid=1
+and extract(year from creationdate)=2014
+and tags.tagname in (select tagname from tags
+			order by count
+			limit 10
+			)

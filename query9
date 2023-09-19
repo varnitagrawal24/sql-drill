@@ -1,0 +1,7 @@
+select u.* from users u
+join (select owneruserid, count(*) as pp from posts group by owneruserid ) p 
+on p.owneruserid=u.id
+join (select userid, count(*) as cp from comments group by userid ) c 
+on c.userid=u.id
+order by ((c.cp*3)+(p.pp*10)+u.upvotes+u.downvotes) desc
+limit 5

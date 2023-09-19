@@ -1,0 +1,4 @@
+select extract(year from creationdate),count(*) from posts
+where posttypeid=1
+group by extract(year from creationdate)
+order by extract(year from creationdate)

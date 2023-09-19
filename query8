@@ -1,0 +1,6 @@
+select extract(year from creationdate)as year,count(*),
+cast(case when extract(year from creationdate)!=2023 then 'true' else 'false' end as text)as "decline usage" 
+from posts
+group by extract(year from creationdate)
+order by count desc
+limit 1

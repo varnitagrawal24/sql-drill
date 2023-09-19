@@ -1,0 +1,9 @@
+select to_char(p2.creationdate,'day') as days,count(*) as "Q/ANS with in a hour" from posts p1,posts p2
+where p1.posttypeid=2
+and p1.parentid=p2.id
+and extract(year from age(p1.creationdate,p2.creationdate))=0
+and extract(month from age(p1.creationdate,p2.creationdate))=0
+and extract(day from age(p1.creationdate,p2.creationdate))=0
+and extract(hour from age(p1.creationdate,p2.creationdate))=0
+group by days
+order by "Q/ANS with in a hour" desc

@@ -1,0 +1,3 @@
+SELECT (count(*)*100/(select count(*) from posts where posttypeid=1)) as percentage 
+FROM posts 
+where answercount>=1;
