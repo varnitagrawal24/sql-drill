@@ -7,3 +7,4 @@ and extract(day from age(p1.creationdate,p2.creationdate))=0
 and extract(hour from age(p1.creationdate,p2.creationdate))=0
 group by days
 order by "Q/ANS with in a hour" desc
+limit 1
