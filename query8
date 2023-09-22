@@ -1,6 +1,8 @@
-select extract(year from creationdate)as year,count(*),
-cast(case when extract(year from creationdate)!=2023 then 'true' else 'false' end as text)as "decline usage" 
-from posts
-group by extract(year from creationdate)
-order by count desc
+select c.cy as years,(cast(case when c.cy=2023 then 'true' else 'false' end as text)) as "decline usage"
+from (select extract(year from creationdate) as cy,count(*) as tc from comments group by cy) c
+join (select extract(year from creationdate) as py,count(*) as tp from posts group by py) p
+on c.cy=p.py
+join(select extract(year from creationdate) as vy,count(*) as tv from votes group by vy) v
+on v.vy=p.py
+order by (c.tc+p.tp+v.tv) desc
 limit 1
